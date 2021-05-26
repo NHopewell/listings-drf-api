@@ -74,4 +74,6 @@ You should see the following response in your terminal:
 }
 ```
 
-See ```api_documentation.md``` for more information.
+See ```api_documentation.md``` for more information. 
+
+*note about the DJango secret key*: it is exposed because this is not a production project.
