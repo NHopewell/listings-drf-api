@@ -42,7 +42,7 @@ python manage.py runserver
 
 For example, to get details about a listing:
 ```shell
-curl http://127.0.0.1:8000/v1/listings/447/ | python3 -m json.tool
+curl http://127.0.0.1:8000/v1/listings/447/ | python -m json.tool
 ```
 You should see the following response in your terminal:
 ```shell
