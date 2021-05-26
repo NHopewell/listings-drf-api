@@ -85,7 +85,7 @@ Mandatory fields for creating and updating Listing objects are:
 
 **Get a listing**
 ```shell
-curl http://127.0.0.1:8000/v1/listings/563/ | python3 -m json.tool
+curl http://127.0.0.1:8000/v1/listings/447/ | python3 -m json.tool
 ```
 
 **List all listings**
