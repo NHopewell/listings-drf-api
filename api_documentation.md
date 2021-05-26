@@ -10,7 +10,7 @@ The API allows you to create, update, and delete ```Listing``` objects. You can 
 | GET    | /v1/listings/:id   | retrieve a listing |
 | PUT    | /v1/listings/:id   | update a listing   |
 | DELETE | /v1/listings/:id   | delete a listing   |
-| GET    | /v1/listings       | list all listings  |
+| GET    | /v1/listings/      | list all listings  |
 
   
 

@@ -3,7 +3,7 @@ This Repo contains code to support a REST API for house listings built with Djan
 ## How to test the API
 
 ### Download requirements
-First clone the repository locally, activate a virtual environment, and download the requirements
+First clone the repository locally, activate a virtual environment, and install the requirements
 ```shell
 python -m venv env
 
@@ -13,8 +13,10 @@ pip install -r requirements.txt
 ```
 
 ### Migrate
-CD into ```src```. The initial migrations file are already made, you just need to migrate them to the database
+The initial migrations file is already made, you just need to migrate them to the database.
 ```shell
+cd src/
+
 python manage.py migrate
 ```
 
