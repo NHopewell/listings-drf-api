@@ -38,7 +38,7 @@ class ListingList(APIView):
         return Response(serializer.data)
 
     def post(self, request, *args, **kwargs):
-        """create listing view. TODO: paginate"""
+        """create listing view."""
         serializer = ListingSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
