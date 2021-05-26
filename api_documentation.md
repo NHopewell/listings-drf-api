@@ -67,7 +67,8 @@ The API allows you to create, update, and delete ```Listing``` objects. You can 
 
 ....  
 ....  
-....
+....  
+and so on ...
 
 
 ## Mandatory fields
@@ -77,3 +78,21 @@ Mandatory fields for creating and updating Listing objects are:
    >city  
    >state   
    >zipcode  
+
+*note* I just picked some arbitrary fields to make mandatory here.
+
+## API Calls
+
+**Get a listing**
+```shell
+curl http://127.0.0.1:8000/v1/listings/563/ | python3 -m json.tool
+```
+
+**List all listings**
+```shell
+curl http://127.0.0.1:8000/v1/listings/ | python3 -m json.tool
+```
+...  
+...  
+...  
+and so on ...
