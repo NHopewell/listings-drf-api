@@ -2,17 +2,17 @@
 ## How to test the API
 
 ### Download requirements
-First clone the repository locally, cd into it, activate a virtual environment, and download the requirements
+First clone the repository locally, activate a virtual environment, and download the requirements
 ```shell
 python -m venv env
 
 source env/bin/activate
 
-pip install -r env/requirements.txt
+pip install -r requirements.txt
 ```
 
 ### Migrate
-The initial migrations file are already made, you just need to migrate them to the database
+CD into ```src```. The initial migrations file are already made, you just need to migrate them to the database
 ```shell
 python manage.py migrate
 ```
