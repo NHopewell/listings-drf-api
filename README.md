@@ -1,18 +1,21 @@
 
+# House Listings DRF API
+This Repo contains code to support a REST API for house listings built with Django and Django Rest Framework.
+
 ## How to test the API
 
 ### Download requirements
-First clone the repository locally, activate a virtual environment, and download the requirements
+First clone the repository locally, cd into it, activate a virtual environment, and download the requirements
 ```shell
 python -m venv env
 
 source env/bin/activate
 
-pip install -r requirements.txt
+pip install -r env/requirements.txt
 ```
 
 ### Migrate
-CD into ```src```. The initial migrations file are already made, you just need to migrate them to the database
+The initial migrations file are already made, you just need to migrate them to the database
 ```shell
 python manage.py migrate
 ```
@@ -21,12 +24,12 @@ python manage.py migrate
 
 The database is initially populated with a csv file of house listings. That csv file can be found in ```src/listing_data.csv``` from the root directory.
 
-The script to populate the database uses a Django management command. This can be found in ```src/listings/management/commands/populate_listings.py```
+The script to populate the database uses a Django management command. This can be found in ```src/api/management/commands/populate_listings.py```
 
-To populate the database, invoke this command as:
+To populate the database, invoke this command (from the ```src``` directory) as:
 
 ```shell
-python manage.py populate_listings --path /path/to/your/file.csv
+python manage.py populate_listings --path listing_data.csv
 ```
 
 ### Runserver
@@ -39,7 +42,7 @@ python manage.py runserver
 
 For example, to get details about a listing:
 ```shell
-curl http://127.0.0.1:8000/v1/listings/447/ | python3 -m json.tool
+curl http://127.0.0.1:8000/v1/listings/563/ | python3 -m json.tool
 ```
 You should see the following response in your terminal:
 ```shell
