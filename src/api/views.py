@@ -46,3 +46,38 @@ class ListingList(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class ListingDetail(APIView):
+    """
+    Retrieve, update or delete a listing.
+    """
+    def get_object(self, listing_id):
+        """get a listing instance"""
+        try:
+            return Listing.objects.get(id=listing_id)
+        except Listing.DoesNotExist:
+            raise Http404
+
+    def get(self, request, listing_id, *args, **kwargs):
+        """get listing with id"""
+        listing = self.get_object(listing_id)
+        serializer = ListingSerializer(listing)
+
+        return Response(serializer.data)
+
+    def put(self, request, listing_id, *args, **kwargs):
+        """update listing with id"""
+        listing = self.get_object(listing_id)
+        serializer = ListingSerializer(listing, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, listing_id, *args, **kwargs):
+        """delete listing with id"""
+        listing= self.get_object(listing_id)
+        listing.delete()
+        
+        return Response(status=status.HTTP_204_NO_CONTENT)
