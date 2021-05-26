@@ -21,7 +21,7 @@ python manage.py migrate
 
 The database is initially populated with a csv file of house listings. That csv file can be found in ```src/listing_data.csv``` from the root directory.
 
-The script to populate the database uses a Django management command. This can be found in ```src/api/management/commands/populate_listings.py```
+The script to populate the database uses a Django management command. This can be found in ```src/listings/management/commands/populate_listings.py```
 
 To populate the database, invoke this command as:
 
@@ -39,7 +39,7 @@ python manage.py runserver
 
 For example, to get details about a listing:
 ```shell
-curl http://127.0.0.1:8000/v1/listings/563/ | python3 -m json.tool
+curl http://127.0.0.1:8000/v1/listings/447/ | python3 -m json.tool
 ```
 You should see the following response in your terminal:
 ```shell
