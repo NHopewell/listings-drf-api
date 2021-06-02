@@ -34,7 +34,7 @@ class Listing(models.Model):
    price = models.CharField(max_length=7, default="")
    property_size = models.PositiveIntegerField(null=True)
    rent_price = models.PositiveIntegerField(null=True)
-   zillow_details = models.ForeignKey(
+   zillow_details = models.OneToOneField(
        ZillowEstimate,
        on_delete=models.CASCADE,
        related_name="listing",
