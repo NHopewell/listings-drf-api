@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+
 class ZillowEstimate(models.Model):
- 
+
    zillow_id = models.PositiveIntegerField(null=True)
    rentzestimate_amount = models.PositiveIntegerField(null=True)
    rentzestimate_last_updated = models.DateField(null=True)
@@ -11,18 +12,20 @@ class ZillowEstimate(models.Model):
 
 
 class Listing(models.Model):
- 
+
    area_unit = models.CharField(max_length=10, default="SqFt")
    bathrooms = models.FloatField(null=True)
-   bedrooms = models.PositiveSmallIntegerField(null=True) # could also have choices
+   bedrooms = models.PositiveSmallIntegerField(
+       null=True)  # could also have choices
    home_size = models.PositiveIntegerField(null=True)
+
    class HomeType(models.TextChoices):
        SINGLEFAMILY = 'SingleFamily', _('Single Family')
        CONDOMINIUM = 'Condominium', _('Condominium')
        MULTIFAMILY = 'MultiFamily2to4', _('Multi-Family (2 to 4)')
        VACANT = 'VacantResidentialLand', _('Vacant Residential Land')
        APARTMENT = 'Apartment', _('Apartment')
- 
+
    home_type = models.CharField(
        max_length=22,
        choices=HomeType.choices,
@@ -43,10 +46,13 @@ class Listing(models.Model):
    tax_year = models.CharField(max_length=4, default="")
    year_built = models.CharField(max_length=4, default="")
    address = models.CharField(max_length=80)
-   city = models.CharField(max_length=40) # could have choices
-   state = models.CharField(max_length=2) # should have choices (CA -> California) etc.
+   city = models.CharField(max_length=40)  # could have choices
+   # should have choices (CA -> California) etc.
+   state = models.CharField(max_length=2)
    zipcode = models.CharField(max_length=5)
- 
- 
+
    def __str__(self):
        return f"{self.__class__.__name__}(home_type:{self.home_type}, price:{self.price})"
+
+   def get_complete_address(self):
+       return f"{self.address}, {self.city}, {self.state}, {self.zipcode}"
