@@ -32,8 +32,8 @@ class Listing(models.Model):
    last_sold_price = models.PositiveIntegerField(null=True)
    link = models.URLField(null=True)
    price = models.CharField(max_length=7, default="")
-   property_size = PositiveIntegerField(null=True)
-   rent_price = PositiveIntegerField(null=True)
+   property_size = models.PositiveIntegerField(null=True)
+   rent_price = models.PositiveIntegerField(null=True)
    zillow_details = models.ForeignKey(
        ZillowEstimate,
        on_delete=models.CASCADE,
