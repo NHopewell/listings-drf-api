@@ -4,6 +4,13 @@ from api.models import ZillowEstimate, Listing
 
 
 class TestListingModel(TestCase):
+    """
+    Test cases for api.Listing model
+
+    tests:
+        -adding a ZillowEstimate nested object to a listing
+        -returning the correct complete address from a listing
+    """
 
     @classmethod
     def setUpTestData(cls):
