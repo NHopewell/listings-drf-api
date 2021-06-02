@@ -38,7 +38,7 @@ class ListingList(APIView, APIViewPaginationMixin):
     pagination_class = LimitOffsetPagination  # also specified in settings.REST_FRAMEWORK for consistency
 
     def get(self, request, *args, **kwargs):
-        """list all listings view. TODO: paginate results"""
+        """list all listings view."""
         listings = Listing.objects.all()
         page = self.paginate_queryset(listings)
 
