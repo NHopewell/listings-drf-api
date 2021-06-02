@@ -78,7 +78,7 @@ class ListingDetail(APIView):
         listing = self.get_object(listing_id)
         serializer = ListingSerializer(listing)
 
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, listing_id, *args, **kwargs):
         """update listing with id"""
@@ -86,7 +86,7 @@ class ListingDetail(APIView):
         serializer = ListingSerializer(listing, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
