@@ -6,6 +6,7 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import AllowAny
 
 
 
@@ -30,6 +31,8 @@ class ListingList(APIView):
     """
     List all listings, or create a new listing.
     """
+    permission_classes = (AllowAny, )
+
     def get(self, request, *args, **kwargs):
         """list all listings view. TODO: paginate results"""
         listings = Listing.objects.all()
@@ -51,6 +54,8 @@ class ListingDetail(APIView):
     """
     Retrieve, update or delete a listing.
     """
+    permission_classes = (AllowAny, )
+    
     def get_object(self, listing_id):
         """get a listing instance"""
         try:
