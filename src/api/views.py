@@ -5,8 +5,11 @@ from api.serializers import ListingSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import serializers, status
 from rest_framework.permissions import AllowAny
+from rest_framework.pagination import LimitOffsetPagination
+
+from .paginators import APIViewPaginationMixin
 
 
 
@@ -27,18 +30,25 @@ class ListingDetail(generics.RetrieveUpdateDestroyAPIView):
 """
 
 
-class ListingList(APIView):
+class ListingList(APIView, APIViewPaginationMixin):
     """
     List all listings, or create a new listing.
     """
     permission_classes = (AllowAny, )
+    pagination_class = LimitOffsetPagination  # also specified in settings.REST_FRAMEWORK for consistency
 
     def get(self, request, *args, **kwargs):
         """list all listings view. TODO: paginate results"""
         listings = Listing.objects.all()
-        serializer = ListingSerializer(listings, many=True)
+        page = self.paginate_queryset(listings)
 
-        return Response(serializer.data)
+        if page:
+            serializer = self.get_paginated_response(
+                ListingSerializer(page, many=True).data)
+        else:
+            serializer = ListingSerializer(listings, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
         """create listing view."""
@@ -55,7 +65,7 @@ class ListingDetail(APIView):
     Retrieve, update or delete a listing.
     """
     permission_classes = (AllowAny, )
-    
+
     def get_object(self, listing_id):
         """get a listing instance"""
         try:
