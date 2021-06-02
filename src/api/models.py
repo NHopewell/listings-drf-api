@@ -51,8 +51,11 @@ class Listing(models.Model):
    state = models.CharField(max_length=2)
    zipcode = models.CharField(max_length=5)
 
+
    def __str__(self):
        return f"{self.__class__.__name__}(home_type:{self.home_type}, price:{self.price})"
 
-   def get_complete_address(self):
+
+   @property
+   def complete_address(self):
        return f"{self.address}, {self.city}, {self.state}, {self.zipcode}"
