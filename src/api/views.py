@@ -92,7 +92,7 @@ class ListingDetail(APIView):
 
     def delete(self, request, listing_id, *args, **kwargs):
         """delete listing with id"""
-        listing= self.get_object(listing_id)
+        listing = self.get_object(listing_id)
         listing.delete()
         
         return Response(status=status.HTTP_204_NO_CONTENT)
